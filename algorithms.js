@@ -22,9 +22,9 @@ const binarySearch = (array, item) => {
         if (array[middle] === item) {
             return middle;
         } else if (array[middle] < item) {
-            start = middle +1;
+            start = middle + 1;
         } else {
-            end = middle -1;
+            end = middle - 1;
         }   
     }
 
@@ -52,7 +52,7 @@ const recursiveBinarySearch = (array, item, start, end) => {
 const selectionSort = array => {
     for (let i = 0; i < array.length; i++) {
         let minInd = i;
-        for (let j = i+1; j < array.length; j++) {  
+        for (let j = i + 1; j < array.length; j++) {  
             if (array[j] < array[minInd]) {
                 minInd = j;
             } 
@@ -70,15 +70,13 @@ const selectionSort = array => {
 
 // 4. BUBBLE SORT
 
-const array = [0,3,25,16,8,9,2,23,1];
-
 const bubbleSort = array => {
     for (let i = 0; i < array.length - 1; i++) {
         for (let j = 0; j < array.length - 1; j++) {
-            if (array[j+1] < array[j]) {
+            if (array[j + 1] < array[j]) {
                 let tmp = array[j];
                 array[j] = array[j+1];
-                array[j+1] = tmp;
+                array[j + 1] = tmp;
             }
         }
     } 
