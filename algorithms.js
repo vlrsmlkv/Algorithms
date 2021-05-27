@@ -1,13 +1,13 @@
 // 1. LINEAR SEARCH (returns the index of an array item)
 
-const linearSearch = (array, item) => {
+const linearSearch = (array, key, item) => {
     for (let i = 0; i < array.length; i++) {
-        if (array[i] === item) return i;
+        if ((array[i][key] === item) || (array[i] === item)) {
+            return i;
+        }
     }
-    
     return -1;
 }
-
 
 // 2. BINARY SEARCH (returns the index of an array item)
 
