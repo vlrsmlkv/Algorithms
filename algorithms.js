@@ -89,23 +89,43 @@ const bubbleSort = array => {
 
 // 5. QUICK SORT
 
-const quickSort = array => {
-    if (array.length <= 1) {
-        return array
-    }
+const quickSort = (array, left, right) => {
+    if (array.length > 1) {
+        let index = partition (array, left, right);
 
-    let middleElIndex = Math.floor(array.length / 2)
-    let less = [];
-    let greater = [];
+        if (left < index - 1) {
+            quickSort(array, left, index - 1);
+        }
 
-    for (let i = 0; i < array.length; i++) {
-        if (i === middleElIndex) continue
-        if (array[i] < array[middleElIndex]) {
-            less.push(array[i])
-        } else {
-            greater.push(array[i])
+        if (index < right) {
+            quickSort(array, index, right);
         }
     }
 
-    return [...quickSort(less), array[middleElIndex],...quickSort(greater)]
+    return array;
+}
+
+const swap = (array, firstIndex, secondIndex) => {
+    let tmp = array[firstIndex];
+    array[firstIndex] = array[secondIndex];
+    array[secondIndex] = tmp;
+}
+
+const partition = (array, left, right) => {
+
+    let pivot = array[Math.floor((left + right) / 2)];
+    let i = left;
+    let j = right;
+    
+    while (i <= j) {
+        while (array[i] < pivot) i++;
+        while (array[j] > pivot) j--;
+        if (i <= j) {
+            swap(array, i, j)
+            i++;
+            j--;
+        }    
+    }
+
+    return i;
 }
