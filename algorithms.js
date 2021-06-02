@@ -1,12 +1,42 @@
 // 1. LINEAR SEARCH (returns the index of an array item)
 
-const linearSearch = (array, key, item) => {
-    for (let i = 0; i < array.length; i++) {
-        if ((array[i][key] === item) || (array[i] === item)) {
-            return i;
+const linearSearch = (array, item) => {
+    if (typeof(item) === "number" || typeof(item) === "string") {
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] === item) return i;
+        }
+
+    } else {
+        for (let i = 0; i < array.length; i++) {
+            if (typeof(array[i]) === "object") {
+                if (deepEqual(array[i], item)) return i;
+            }
         }
     }
+
     return -1;
+}
+
+const deepEqual = (obj1, obj2) => {
+
+    let obj1Keys = Object.keys(obj1);
+    let obj2Keys = Object.keys(obj2);
+    
+    if (obj1Keys.length !== obj2Keys.length) return false;
+
+    for (key in obj1) {
+        if (!obj2Keys.includes(key)) return false;
+    }
+
+    for (key in obj1) {
+        if (typeof(obj1[key]) === "number" || typeof(obj1[key]) === "string") { 
+            if (obj1[key] !== obj2[key]) return false;
+        } else {
+            deepEqual(obj1[key], obj2[key]);
+        }
+    }   
+
+    return true;
 }
 
 // 2. BINARY SEARCH (returns the index of an array item)
