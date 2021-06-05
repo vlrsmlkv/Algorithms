@@ -1,13 +1,29 @@
 // 1. LINEAR SEARCH (returns the index of an array item)
 
-const linearSearch = (array, item) => {
+const linearSearch = (array, item, equal = defaultEqual) => {
     for (let i = 0; i < array.length; i++) {
-        if (array[i] === item) return i;
+        if (equal(array[i], item)) return i;
     }
-    
+
     return -1;
 }
 
+const defaultEqual = (a, b) => a === b;
+
+const deepEqual = (obj1, obj2) => {
+    const type1 = typeof(obj1);
+    const type2 = typeof(obj2);
+    
+    if (type1 !== type2) return false;
+    if (type1 !== "object") return obj1 === obj2;
+
+    const obj1Keys = Object.keys(obj1);
+    const obj2Keys = Object.keys(obj2);
+    
+    if (obj1Keys.length !== obj2Keys.length) return false;
+
+    return obj1Keys.every(obj1Key => deepEqual(obj1[obj1Key], obj2[obj1Key]));
+}
 
 // 2. BINARY SEARCH (returns the index of an array item)
 
@@ -22,9 +38,9 @@ const binarySearch = (array, item) => {
         if (array[middle] === item) {
             return middle;
         } else if (array[middle] < item) {
-            start = middle +1;
+            start = middle + 1;
         } else {
-            end = middle -1;
+            end = middle - 1;
         }   
     }
 
@@ -52,7 +68,7 @@ const recursiveBinarySearch = (array, item, start, end) => {
 const selectionSort = array => {
     for (let i = 0; i < array.length; i++) {
         let minInd = i;
-        for (let j = i+1; j < array.length; j++) {  
+        for (let j = i + 1; j < array.length; j++) {  
             if (array[j] < array[minInd]) {
                 minInd = j;
             } 
@@ -70,15 +86,13 @@ const selectionSort = array => {
 
 // 4. BUBBLE SORT
 
-const array = [0,3,25,16,8,9,2,23,1];
-
 const bubbleSort = array => {
     for (let i = 0; i < array.length - 1; i++) {
         for (let j = 0; j < array.length - 1; j++) {
-            if (array[j+1] < array[j]) {
+            if (array[j + 1] < array[j]) {
                 let tmp = array[j];
                 array[j] = array[j+1];
-                array[j+1] = tmp;
+                array[j + 1] = tmp;
             }
         }
     } 
