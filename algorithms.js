@@ -89,7 +89,7 @@ const bubbleSort = array => {
 
 // 5. QUICK SORT
 
-const quickSort = (array, left, right) => {
+const quickSort = (array, left = 0, right = array.length - 1) => {
     if (array.length > 1) {
         let index = partition (array, left, right);
 
