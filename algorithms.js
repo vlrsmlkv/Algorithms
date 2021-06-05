@@ -1,42 +1,28 @@
 // 1. LINEAR SEARCH (returns the index of an array item)
 
-const linearSearch = (array, item) => {
-    if (typeof(item) === "number" || typeof(item) === "string") {
-        for (let i = 0; i < array.length; i++) {
-            if (array[i] === item) return i;
-        }
-
-    } else {
-        for (let i = 0; i < array.length; i++) {
-            if (typeof(array[i]) === "object") {
-                if (deepEqual(array[i], item)) return i;
-            }
-        }
+const linearSearch = (array, item, equal = defaultEqual) => {
+    for (let i = 0; i < array.length; i++) {
+        if (equal(array[i], item)) return i;
     }
 
     return -1;
 }
 
-const deepEqual = (obj1, obj2) => {
+const defaultEqual = (a, b) => a === b;
 
-    let obj1Keys = Object.keys(obj1);
-    let obj2Keys = Object.keys(obj2);
+const deepEqual = (obj1, obj2) => {
+    const type1 = typeof(obj1);
+    const type2 = typeof(obj2);
+    
+    if (type1 !== type2) return false;
+    if (type1 !== "object") return obj1 === obj2;
+
+    const obj1Keys = Object.keys(obj1);
+    const obj2Keys = Object.keys(obj2);
     
     if (obj1Keys.length !== obj2Keys.length) return false;
 
-    for (key in obj1) {
-        if (!obj2Keys.includes(key)) return false;
-    }
-
-    for (key in obj1) {
-        if (typeof(obj1[key]) === "number" || typeof(obj1[key]) === "string") { 
-            if (obj1[key] !== obj2[key]) return false;
-        } else {
-            deepEqual(obj1[key], obj2[key]);
-        }
-    }   
-
-    return true;
+    return obj1Keys.every(obj1Key => deepEqual(obj1[obj1Key], obj2[obj1Key]));
 }
 
 // 2. BINARY SEARCH (returns the index of an array item)
