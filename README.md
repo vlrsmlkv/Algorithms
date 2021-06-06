@@ -19,7 +19,9 @@ Also I want to pay your attention on linear search, because it has one cool feat
 The part where i was watching hungarian folk dance videos on YouTube explaining basic algorithms. 
 Now you can be absolutely sure that I know what is actually going on every time when a computer sorts!
 
-# Author :upside_down_face:
+YouTube channel i'm talking about: [AlgoRythmics](https://www.youtube.com/user/AlgoRythmics/videos)
+
+## Author :upside_down_face:
  - Github.com: [Me](https://github.com/vlrsmlkv/)
 
 Special thanks go to my mentor and best friend [Mishanya](https://github.com/OUghTMS/). All of that wouldn't be possible if it wasn't for him.
